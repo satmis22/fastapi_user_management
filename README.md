@@ -104,3 +104,57 @@
    - **residence_country**: Country code of the user's residence.
    
    - **email**: Email address of the user.
+
+   
+
+## Step 3: Implement API Endpoints
+
+### 3.1. Create New User (POST Request)
+
+- **Description**: Implement an API endpoint to create a new user.
+  
+  - **Endpoint Path**: `/users/`
+  
+  - **HTTP Method**: POST
+  
+  - **Request Body**: JSON data containing user details (first_name, last_name, phone_number, residence_country, email).
+  
+  - **Response**: JSON response with the created user data and status code.
+
+### 3.2. Retrieve User Details (GET Request)
+
+- **Description**: Implement an API endpoint to retrieve user details by user ID.
+  
+  - **Endpoint Path**: `/users/{user_id}`
+  
+  - **HTTP Method**: GET
+  
+  - **Path Parameter**: user_id (int) - Unique identifier of the user.
+  
+  - **Response**: JSON response with the user details corresponding to the provided user ID and status code.
+
+### 3.3. Update User Details (PATCH Request)
+
+- **Description**: Implement an API endpoint to update user details by user ID.
+  
+  - **Endpoint Path**: `/users/{user_id}`
+  
+  - **HTTP Method**: PATCH
+  
+  - **Path Parameter**: user_id (int) - Unique identifier of the user to be updated.
+  
+  - **Request Body**: JSON data containing the fields to be updated (first_name, last_name, phone_number, residence_country, email).
+  
+  - **Response**: JSON response with the updated user data and status code.
+
+### 3.4. Delete User (DELETE Request)
+
+- **Description**: Implement an API endpoint to delete a user by user ID.
+  
+  - **Endpoint Path**: `/users/{user_id}`
+  
+  - **HTTP Method**: DELETE
+  
+  - **Path Parameter**: user_id (int) - Unique identifier of the user to be deleted.
+  
+  - **Response**: JSON response confirming the deletion of the user and status code.
