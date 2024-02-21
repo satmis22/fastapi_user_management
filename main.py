@@ -9,12 +9,13 @@ app = FastAPI()
 @app.post("/users/")
 async def create_user(user: User):
 
-    # Logic to save the user data to the database can be added here.
-    # For simplicity, let's assume it's implemented elsewhere.
-    # Return the created user data as a response.
+    # The user patameter is automatically validated againtst 'UserCreate' model schema
+    # If validation fails, FastAPI autoamtically return HTTP 422 Unprocessable
 
-    return user
-
+    country_data = { "country_name": "Example Country", "country_code": "EX"}
+    return {"user": user.model.dump(), "country": country_data}    
+            
+# used user.model.dump() instead of user.dict() as it has been depriciated.
 
 
 #Endpoint to retrieve user details by user ID
@@ -26,7 +27,8 @@ async def get_user(user_id: int):
     # For simplicity, let's assume it's implemented elsewhere.
     # Return the created user data as a response.
 
-    return {"user_id": user_id, "user_data": "Sample user data"}
+    country_data = {"country_name": "Example Country", "country_code": "EX"}
+    return {"user_id": user_id, "user_data": "Sample user data", "country": country_data}
 
 
 #Endpoint to update user details by user ID

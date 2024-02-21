@@ -158,3 +158,78 @@
   - **Path Parameter**: user_id (int) - Unique identifier of the user to be deleted.
   
   - **Response**: JSON response confirming the deletion of the user and status code.
+
+
+
+## Step 4: Type Checks and Validation with Pydantic
+
+### 4.1. Create Pydantic Models for User Input
+
+- **Description**: Define Pydantic models to validate user input data for creating users.
+  
+  - **File**: `schemas.py`
+  
+  - **Purpose**: To ensure that incoming user data adheres to the specified structure and data types.
+  
+  - **Pydantic Model**:
+    ```python
+    from pydantic import BaseModel
+
+    class UserCreate(BaseModel):
+        """
+        Pydantic model for validating user creation input.
+        """
+        first_name: str
+        """
+        First name of the user.
+        """
+
+        last_name: str
+        """
+        Last name of the user.
+        """
+
+        phone_number: str
+        """
+        Phone number of the user.
+        """
+
+        residence_country: str
+        """
+        Country code of the user's residence.
+        """
+
+        email: str
+        """
+        Email address of the user.
+        """
+    ```
+
+### 4.2. Use Pydantic Models in API Endpoints
+
+- **Description**: Integrate Pydantic models into API endpoints to validate incoming user input data.
+  
+  - **File**: `main.py`
+  
+  - **Purpose**: To ensure that user data provided in requests is valid before processing further.
+  
+  - **Usage**:
+    ```python
+    # Endpoint to create a new user
+    @app.post("/users/")
+    async def create_user(user: UserCreate):
+        """
+        Endpoint to create a new user.
+        """
+        # The `user` parameter is automatically validated against the `UserCreate` model schema.
+        # If validation fails, FastAPI automatically returns an HTTP 422 Unprocessable Entity error with validation errors.
+        
+        # Logic to save the validated user data to the database can be added here.
+        # For simplicity, let's assume it's implemented elsewhere.
+        
+        # Return the created user data as a response.
+        return user.dict()
+    ```
+
+- **Note**: FastAPI automatically handles validation errors and returns appropriate HTTP responses with details of validation errors.
+
