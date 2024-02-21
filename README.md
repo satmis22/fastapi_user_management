@@ -70,3 +70,37 @@
      ```
 
    - **Access the Application**: Open a web browser and go to `http://127.0.0.1:8000/` to see the "Hello World" message, indicating that the FastAPI application is running successfully.
+
+
+## Step 2: User Model Creation
+
+### 2.1. Define User Model with SQLModel
+
+   - **Description**: Create a user model using SQLModel with the specified fields.
+   
+   - **File**: `models.py`
+   
+   - **Content**:
+     ```python
+     from sqlmodel import SQLModel, Field
+
+     class User(SQLModel, table=True):
+         id: Optional[int] = Field(default=None, primary_key=True)
+         first_name: str
+         last_name: str
+         phone_number: str
+         residence_country: str
+         email: str
+     ```
+
+### 2.2. Model Explanation:
+
+   - **first_name**: First name of the user.
+   
+   - **last_name**: Last name of the user.
+   
+   - **phone_number**: Phone number of the user.
+   
+   - **residence_country**: Country code of the user's residence.
+   
+   - **email**: Email address of the user.
